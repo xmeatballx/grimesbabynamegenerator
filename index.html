@@ -2,28 +2,30 @@
 <html>
 <head>
 	<html>
+  <link rel="stylesheet" type="text/css" href="style.css"> 
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.min.js"></script>
   <script src="./rita.min.js"></script>
   <script>
-	var lines, markovPlanes, markovElven, button, x, y;
+	var lines, markovPlanes, markovElven, button, x, y, myFont;
 	let planes = ['XFL-1', 'P-39', 'P-59', 'A-36', 'C-61', 'XP-55', 'TBF', 'TBM', 'A-30', 'XP-67', 'F8F', 'A-34', 'SB2A', 'XP-56', 'P-61', 'F2T', 'AT-8', 'UC-78', 'B-18', 'DB-7', 'A-20', 'A-34', 'SB2A', 'F2A', 'C-76', 'OA-10', 'XP-58', 'SB2U', 'C-46', 'C-69', 'PT-26', 'PB2Y', 'F4U', 'F3A', 'FG-1', 'AT-17', 'AT-15', 'L-4', 'C-47', 'A-24', 'SNC-1', 'SB2D', 'B-18', 'B-32', 'B-23', 'P-75', 'JR2S', 'C-45', 'AT-9', 'B-17', 'XP-79B', 'B-17', 'C-61', 'F6F', 'L-3', 'AT-12', 'AT-14', 'A-20', 'P-36', 'F6F', 'A-26', 'A-36', 'AT-9', 'C-87', 'B-26', 'F4F-3', 'XA-22', 'B-25', 'P-36', 'P-51', 'AT-7', 'P-70', 'PT-22', 'P-44', 'A-25', 'XF5U-1', 'C-54', 'R5D', 'XF5F-1', 'C-47', 'C-53', 'BT-12', 'B-29', 'XP-54', 'P-47', 'F7F', 'AT-10']
 	let elven = ['ar', 'atamar', 'deshu', 'drii', 'irasku', 'ent', 'tarine', 'hithar', 'elandi', 'shaalth', 'esk', 'bag', 'enyor', 'lani', 'kesha', 'lothos', 'saaden', 'ausa', 'ary', 'cerlyn', 'ilphu', 'thablu', 'athel', 'kathan', 'kulaa', 'nai', 'bre', 'kukisha', 'sain', 'leha', 'sanerek', 'surinya', 'beneral', 'surnar', 'tenya', 'arranaseer', 'reloseer', 'quar', 'daquim', 'nevae', 'nevaedarn', 'noresh', 'azrsurinya', 'karask', 'holi', 'mion', 'mor', 'hakarmaskannar', 'erkatam', 'erek', 'kesir', 'hakar', 'vaarn', 'noarun', 'ennamar', 'maskan', 'sekkar', 'ama', 'klatha', 'nesh', 'ravan', 'revanthas', 'lia', 'kiir', 'yewl', 'sharatam', 'shan', 'scient', 'thar', 'chas', 'sherekir', 'faenya', 'meli', 'enial', 'heriryar', 'bhen', 'aul', 'scennal', 'mault', 'cor', 'anharad', 'ivae', 'staleen', 'lerret', 'rell', 'klathmor', 'mithral', 'nodel', 'silath', 'lahr', 'tham', 'lo', 'neh', 'nars', 'amne', 'arta', 'enna', 'quin', 'hakavarn', 'adon', 'xilo', 'alushtas', 'harsan', 'revar', 'jharran', 'lersaat', 'don', 'sarash', 'kekual', 'desha', 'hinue', 'quarlani', 'hinual', 'stacia', 'maskaula', 'diir', 'neshanas', 'kessuk', 'kerym', 'teshuel', 'leshere', 'eshaal', 'nae', 'morenial', 'belath', 'sehan', 'lath', 'avae', 'biir', 'mormhaor', 'ernath', 'keryth', 'alus', 'quen', 'kerymeth', 'gala', 'ivae', 'asa', 'faer', 'rilis', 'ashanela', 'thuen', 'avavaen', 'aelth', 'nehel']
-	let algebraic = ['x', '=', '≠', '≡', '≜', ':=', '~', '≈', '∝', '∞', '≪', '≫', '( )', '[ ]', '{ }', '⌊x⌋', '⌈x⌉', 'x!', '| x', 'f', '(x', '∘', 'f∘g', '(x', '(a,b', '[a,b', '∆', '∆', '∑', '∑∑', '∏', 'e', 'γ', 'φ', 'π']
+	let algebraic = ['X', '=', '≠', '≡', '≜', ':=', '~', '≈', '∝', '∞', '≪', '≫', '( )', '[ ]', '{ }', '⌊X⌋', '⌈X⌉', 'X!', '| X', 'F', '(X)', '∘', 'f∘g', '(a,b)', '[a,b]', '∆', '∆', '∑', '∑∑', '∏', 'E', 'γ', 'φ', 'π']
 
 	function setup() {
 
-	  createCanvas(500, 500);
-	  textFont('times');
+	  createCanvas(innerWidth,innerHeight);
+     myFont = loadFont('Comfortaa-VariableFont_wght.ttf')
 	  textSize(72);
 	  textAlign(CENTER);
 
-	  x = -width/3;
-	  y = height/2-height/6;
+	  x = width/2;
+	  y = height/4;
 
 	  button = createButton('Generate');
 	  button.size(100,50);
-	  button.position(width/3,height/2+height/4);
+	  button.position(width/2-50,height/2);
 	  button.mousePressed(mouse);
 
 
@@ -34,9 +36,6 @@
 	  // load text into the model
 	  markovElven.loadTokens(elven);
 	  markovPlanes.loadTokens(planes);
-
-
-	  drawText();
 	}
 
 	function mouse(){
@@ -44,18 +43,32 @@
 	}
 
 	function drawText() {
+	  //limit length of elven string
 	  var elvenSlice;
 	  var elven2 =  markovElven.generateTokens(1);
 	  if (elven2[0].length>2) {
 	  	elvenSlice = elven2[0].slice(0,2);
 	  }
-	  print(algebraic.length)
-	  background(250);
-	  text(algebraic[int(random(35))] + " " + elvenSlice + " " + markovPlanes.generateTokens(1), x, y, 800, 800);
-	}
+
+
+	  
+	  //combine markov chains into response
+   var alg = algebraic[int(random(35))];
+   if(alg && elvenSlice) {
+      background(255);
+      push();
+      textFont(myFont);
+      textSize(48);
+      text('Congratulations its a:', width/2, 50);
+      pop();
+      textSize(72);
+      textFont('georgia');
+      text(alg + " " + elvenSlice + " " + markovPlanes.generateTokens(1), x, y);
+   }
+}
 </script>
 </head>
 <body>
-<p></p>
+<h1>Grimes/Elon Musk Baby Name Generator</h1>
 </body>
 </html>

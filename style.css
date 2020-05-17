@@ -1,0 +1,11 @@
+.p5Canvas{
+	display: block;
+	margin:auto;
+}
+
+h1 {
+	font-size: 24pt;
+	text-align: CENTER;
+	background-color: black;
+	color: white;
+}
