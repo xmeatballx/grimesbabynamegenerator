@@ -1,33 +1,69 @@
-.p5Canvas{
+.p5Canvas {
 	display: block;
-	margin:auto;
+	margin: auto;
 }
 
 h1 {
-	font-size: 24pt;
+	font-size: 48pt;
 	text-align: CENTER;
 	background-color: black;
 	color: white;
+	margin-top: 0px;
+	margin-bottom: 10%;
 }
 
 h3 {
-	font-family: 'Comfortaa', cursive;
+	font-family: "Comfortaa", cursive;
 	font-size: 2rem;
 	text-align: CENTER;
 }
 
 p {
-	margin:5%;
-	font-family: 'times';
+	margin: 5%;
+	font-family: "times";
 	font-size: 5rem;
 	text-align: CENTER;
 }
 
 #gen {
-	width:100px;
-	height:50px;
+	width: 100px;
+	height: 50px;
 }
 
 #genDiv {
-	display:block;
+	display: block;
+}
+
+.big-button {
+	display: flex;
+	justify-content: CENTER;
+	margin: auto;
+	width: 500px;
+	height: 250px;
+	font-size: 500%;
+}
+
+.small-button {
+	display: flex;
+	justify-content: CENTER;
+	margin: auto;
+	width: 100px;
+	height: 50px;
+	font-size: 100%;
+}
+
+@media only screen and (max-width: 980px) {
+	#copy-text {
+		font-size: minmax(15vw, 32pt);
+	}
+
+	#congrats {
+		font-size: 5vw;
+	}
+
+	#congrats-div {
+		width: 100%;
+		height: 20%;
+		margin-bottom: 15%;
+	}
 }
